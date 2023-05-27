@@ -1,61 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
+window.addEventListener('resize',()=>{
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arrow Game</title>
-    <style type="text/css">
-        html,body{
-            margin: 0px;
-            padding: 0px;
-        }
-        *{
-            box-sizing: border-box;
-        }
-       .wrapper{
-          width: 100%; 
-          height: 100%;
-       }
-       #con{
-         width: 100px;
-         height: 100px;
-         transition: all 0.2s linear;
-         position: absolute;
-        
-         /* top :calc(100vh - 100px);
-         left :calc(100vw - 100px); */
-       }
-       body{
-         width: 100vw;
-         height: 100vh;
+  if(window.innerWidth <= 500){
+    document.body.remove();
+    alert("🙏 This game only youcan access  with PC or Tab with physical keyboard.");
+  }
+});
 
-       }
-       #bg-video{
-         position: fixed;
-         z-index: -100;
-         width: 100vw;
-         height: 100vh;
-         object-fit: cover;
-         object-position: center center;
+const div = document.getElementById('con');
+let topi = 0;
+let lefti = 0;
+speed = 6;
 
-       }
-    </style>
-</head>
+// let carch = document.getElementById('crach');
+// const when_run = ()=>{
+//    carch.src = "./audio/spaceship-cruising-ufo-7176.mp3";
+// };
 
-<body> 
-    <audio id="crach" src=""  autoplay preload="auto" type="audio/mpeg"></audio>
-   <video  id="bg-video"src="./video/sky.mp4" type="vidoe/mp4" alt="sky-video" loop muted autoplay></video>
-    <div class="wrapper">
-        <div id="con"><img src="./images/space-ship.png" type="image/png" alt="space-ship"></div>
-    </div>
+const knowKey = (e)=>{
+
+  switch(e.key){
+    case "ArrowUp":
+    topi = topi - speed;
+   // when_run();
+    break;    
+    case 'ArrowDown':
+    topi = topi + speed;
+   // when_run();
+    break;    
+    case 'ArrowRight':
+    lefti = lefti + speed;
+   // when_run();
+    break;    
+    case 'ArrowLeft':
+        lefti = lefti - speed;
+       // when_run();
+    break;    
+    default :
     
-    <script src="./access.js"></script>
-</body>
+    console.log("press any of them : ArrowUp   ArrowDown ArrowLeft ArrowRight");
+  }
+ 
+if(topi < 0){
+    topi = 0;
+    when_crach();
+}else if(topi >=86){
+  topi = 86;
+  when_crach();
+}
+if(lefti < 0){
+    lefti = 0;
+    when_crach();
+}else if(lefti >= 92.9){
+    lefti = 92.7;
+    when_crach();
+}
 
-</html>
+  div.style.cssText = `top:${topi}vh`;
+  div.style.cssText += `left :${lefti}vw`;
+};
+window.addEventListener('keydown',knowKey);
+
+// window.addEventListener('keyup',()=>{
+//   carch.src = "";
+// });
+
+//  top :86vh;
+//left: 92.8vw;
 
 
 
-          .catch((error)=>console.log(`${error} Can't fetch data! Raju find the mistake`)); -->
